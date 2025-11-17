@@ -1,73 +1,481 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="ja">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>WataGamePortfolio</title>
-    <link rel="stylesheet" href="css/portfolio・top.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Portfolio</title>
+    <style>
+        /* ===== 基本設定 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a; /* ダークな背景 */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ===== ヘッダーセクション ===== */
+        header {
+            padding: 100px 20px 80px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #888;
+            font-weight: 300;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.2s forwards;
+        }
+
+        /* ===== メインコンテナ ===== */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        /* ===== 自己紹介セクション ===== */
+        .about-section {
+            margin-bottom: 120px;
+            padding: 60px 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .about-content h3 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+         .about-content h4 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .about-content p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        /* スキル表示 */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .skill-item {
+            padding: 8px 20px;
+            border: 1px solid #333;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #999;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* ===== ゲーム一覧セクション ===== */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 50px;
+            text-align: center;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 120px;
+        }
+
+        /* ゲームカード */
+        .game-card {
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .game-card:hover {
+            border-color: #444;
+            transform: translateY(-5px);
+        }
+
+        /* ゲーム画像部分 */
+        .game-image {
+            width: 488px;
+            height: 255px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            overflow: hidden; /* 念のため */
+        }
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 画像全体を表示（空白OK） */
+        }
+
+
+
+        .game-card:hover .game-image {
+            background: #222;
+        }
+
+        /* ゲームカードのコンテンツ部分 */
+        .game-content {
+            padding: 30px;
+        }
+
+        .game-title {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            font-weight: 400;
+        }
+
+        .game-description {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* タグ表示 */
+        .game-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border: 1px solid #333;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* 詳細リンク */
+        .game-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .game-link:hover {
+            gap: 12px;
+        }
+
+        .game-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .game-link:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* ===== お問い合わせセクション ===== */
+        .contact-section {
+            margin: 100px 0;
+            padding: 60px 0;
+            border-top: 1px solid #222;
+        }
+
+        .contact-card {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-card h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* お問い合わせフォーム */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 入力フィールド */
+        .form-group input,
+        .form-group textarea {
+            padding: 15px;
+            border: 1px solid #222;
+            border-radius: 0;
+            background: #0a0a0a;
+            color: #fff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #555;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* 送信ボタン */
+        .submit-button {
+            padding: 16px 40px;
+            background: #fff;
+            color: #0a0a0a;
+            border: none;
+            border-radius: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: flex-start;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background: #ddd;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .contact-note {
+    margin-top: 20px;
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.contact-note .contact-mail {
+    color: #ccc;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.contact-note .contact-mail:hover {
+    color: #fff;
+}
+
+        /* ===== フッター ===== */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ===== アニメーション定義 ===== */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== レスポンシブデザイン ===== */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 20px 60px;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-section {
+                margin-bottom: 80px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>Wata Game Portfolio</header>
-    <div class="container">
-        <div class="side">
-            <a href="portfolio・top.html">TOP</a>
-            <a href="portfolio・profile.html">PROFILE</a>
-            <a href="portfolio・game1.html">2Dシューティング</a>
-            <a href="portfolio・game2.html">2Dアクション</a>
-            <a href="portfolio・game3.html">3Dアクション</a>
-            <a href="portfolio・inquiry.html">お問い合わせ</a>
-        </div>
-        <div class="main">
-            <h1>プロフィール</h1>
-            <a href="portfolio・profile.html">
-                <div class="profile">
+    <!-- ===== ヘッダーセクション ===== -->
+    <header>
+        <h1>Game Portfolio</h1>
+        <p>Growing through the joy of making games.</p><!--ゲームを作る喜びを通して成長する。-->
+    </header>
 
-                    <img style=" width: 20%" src="date/wata01.jpg">
-                    <dl>
-                        <dt>渡部　匠人</dt>
-                        <dd>生年月日：2005年9月12日　北海道名寄市出身</dd>
-                        <dd>趣味はゲーム、読書、スポーツ観戦(サッカー)</dd>
-                    </dl>
+    <!-- ===== メインコンテンツ ===== -->
+    <div class="container">
+        <!-- 自己紹介セクション -->
+        <section class="about-section">
+            <div class="about-content">
+                <h2>About</h2>
+                <h3>渡部匠人</h3>
+                <h4>趣味</h4>
+                <p>ゲーム スポーツ観戦 アニメ</p>
+                <h4>実績</h4>
+                <p>U19 eスポーツ選手権2024 Leage of Legends部門 3位</p>
+                <p>
+                    高校1年の頃にLeage of Legendsにのめり込み高校2年でサーバーサイドエンジニアを志すように。
+                    ゲーム業界にこだわらず様々な業界で活躍できるエンジニアを目指しています。
+                </p>
+                <div class="skills">
+                    <span class="skill-item">Unity</span>
+                    <span class="skill-item">C</span>
+                    <span class="skill-item">C#</span>
+                    <span class="skill-item">ubuntu</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">Laravel</span>
+                    <span class="skill-item">Docker</span>
                 </div>
-            </a>
-            <h1>Game</h1>
-            <a href="portfolio・game1.html">
-                <div class="gamelist">
-                    <img style=" width: 20%" src="date/2Dshooting1.png">
-                    <dl>
-                        <dt>2Dシューティング</dt>
-                        <dd>滑る弾幕ゲーム</dd>
-                    </dl>
+            </div>
+        </section>
+
+        <!-- ゲーム一覧セクション -->
+        <div class="section-title">Projects</div>
+        <div class="games-grid">
+            <!-- ゲームカード1 -->
+            <div class="game-card">
+                <div class="game-image"><img src="2D_Action1.png" alt="Cherry Farm"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Cherry Farm</h3>
+                    <p class="game-description">リスが黄金のさくらんぼを求めて上を目指す</p>
+                    <div class="game-tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">2D</span>
+                    </div>
+                    <a href="Chery Farm.html" class="game-link">View Project</a>
                 </div>
-            </a>
-            <a href="portfolio・game2.html">
-                <div class="gamelist">
-                    <img style=" width: 20%" src="date/2DAction2.png">
-                    <dl>
-                        <dt>2Dアクション</dt>
-                        <dd>上を目指す宝探し風アクション</dd>
-                    </dl>
+            </div>
+
+            <!-- ゲームカード2 -->
+            <div class="game-card">
+                <div class="game-image"><img src="Escape_Asteroid2.png"></div>
+                <div class="game-content">
+                    <h3 class="game-title">Escape_asteroid</h3>
+                    <p class="game-description">酸素がなくなる前に地球に帰還せよ</p>
+                    <div class="game-tags">
+                        <span class="tag">Unity</span>
+                        <span class="tag">C#</span>
+                        <span class="tag">3D</span>
+                        <span class="tag">Photoshop</span>
+                    </div>
+                    <a href="Escape_Asteroid.html" class="game-link">View Project</a>
                 </div>
-            </a>
-            <a href="portfolio・game3.html">
-                <div class="gamelist">
-                    <img style=" width: 20%" src="date/3DAction.png">
-                    <dl>
-                        <dt>3Dアクションゲーム</dt>
-                        <dd>敵MOBとのPvEゲーム</dd>
-                    </dl>
+            </div>
+
+            <!-- ゲームカード3 -->
+            <div class="game-card">
+                <div class="game-image">🏃</div>
+                <div class="game-content">
+                    <h3 class="game-title">Endless Runner</h3>
+                    <p class="game-description">エンドレスで楽しめる中毒性の高い3Dランニングゲーム</p>
+                    <div class="game-tags">
+                        <span class="tag">Unreal Engine</span>
+                        <span class="tag">3D</span>
+                        <span class="tag">Mobile</span>
+                    </div>
+                    <a href="#" class="game-link">View Project</a>
                 </div>
-            </a>
+            </div>
         </div>
+
+        <!-- お問い合わせセクション -->
+        <section class="contact-section">
+            <div class="contact-card">
+                <p class="contact-note">お問い合わせは<a href="https://mail.google.com/mail/?view=cm&fs=1&to=241211@st.yoshida-g.ac.jp" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="contact-mail">
+                    241211@st.yoshida-g.ac.jpまで
+                    </a></p>
+             </div>
+        </section>
+        
     </div>
+
+    <!-- ===== フッター ===== -->
     <footer>
-        <a href="portfolio・top.html">TOP</a>
-        <a href="portfolio・profile.html">PROFILE</a>
-        <a href="portfolio・game1.html">2Dシューティング</a>
-        <a href="portfolio・game2.html">2Dアクション</a>
-        <a href="portfolio・game3.html">3Dアクション</a>
-        <a href="portfolio・inquiry.html">お問い合わせ</a>
+        <p>Thank you for visiting</p>
     </footer>
+
+    
 
 </body>
 </html>
