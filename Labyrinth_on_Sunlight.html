@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action Game - Project Details</title>
+    <style>
+        /* ===== 基本設定 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ===== ナビゲーション ===== */
+        nav {
+            padding: 30px 40px;
+            border-bottom: 1px solid #222;
+        }
+
+        .back-link {
+            color: #888;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #fff;
+            gap: 12px;
+        }
+
+        .back-link::before {
+            content: '←';
+            transition: transform 0.3s ease;
+        }
+
+        .back-link:hover::before {
+            transform: translateX(-4px);
+        }
+
+        /* ===== ヒーローセクション ===== */
+        .hero {
+            padding: 80px 40px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .project-title {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #888;
+            font-weight: 300;
+        }
+
+        /* ===== メインコンテナ ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* ===== プロジェクト情報 ===== */
+        .project-info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            margin-bottom: 100px;
+        }
+
+        .info-section {
+            border-top: 1px solid #222;
+            padding-top: 30px;
+        }
+
+        .info-title {
+            font-size: 0.85rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .info-content {
+            font-size: 1rem;
+            color: #ccc;
+            line-height: 1.8;
+        }
+
+        .tech-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tech-item {
+            padding: 8px 0;
+            color: #aaa;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .meta-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+
+        .meta-label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+
+        /* ===== 詳細説明セクション ===== */
+        .description-section {
+            margin-bottom: 100px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #aaa;
+            max-width: 800px;
+        }
+
+        .description-text p {
+            margin-bottom: 20px;
+        }
+
+        /* ===== 主な機能セクション ===== */
+        .features-section {
+            margin-bottom: 100px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            border-top: 1px solid #222;
+            padding-top: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .feature-description {
+            font-size: 0.95rem;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        /* ===== ギャラリーセクション ===== */
+        .gallery-section {
+            margin-bottom: 100px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            border: 1px solid #222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            background: #222;
+            border-color: #444;
+        }
+
+        /* ===== 外部リンクセクション ===== */
+        .links-section {
+            padding: 60px 0;
+            border-top: 1px solid #222;
+            text-align: center;
+        }
+
+        .link-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .link-button {
+            padding: 16px 40px;
+            background: transparent;
+            color: #fff;
+            border: 1px solid #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .link-button:hover {
+            background: #fff;
+            color: #0a0a0a;
+            border-color: #fff;
+        }
+
+        .link-button.primary {
+            background: #fff;
+            color: #0a0a0a;
+        }
+
+        .link-button.primary:hover {
+            background: #ddd;
+        }
+
+        /* ===== フッター ===== */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid #222;
+        }
+
+        footer p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* ===== レスポンシブデザイン ===== */
+        @media (max-width: 768px) {
+            .project-title {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 60px 20px;
+            }
+
+            .project-info {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .link-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== ナビゲーション ===== -->
+    <nav>
+        <a href="index.html" class="back-link">Back to Portfolio</a>
+    </nav>
+
+    <!-- ===== ヒーローセクション ===== -->
+    <section class="hero">
+        <h1 class="project-title">木漏れ日の迷宮</h1>
+        <p class="project-subtitle">変化する迷宮から脱出せよ</p>
+    </section>
+
+    <!-- ===== メインコンテンツ ===== -->
+    <div class="container">
+        <!-- プロジェクト情報 -->
+        <div class="project-info">
+            <!-- 左側：技術情報 -->
+            <div>
+                <div class="info-section">
+                    <h3 class="info-title">技術スタック</h3>
+                    <ul class="tech-list">
+                        <li class="tech-item">Unity</li>
+                        <li class="tech-item">C#</li>
+                        <li class="tech-item">PHP</li>
+                    </ul>
+                </div>
+
+                <div class="info-section" style="margin-top: 40px;">
+                    <h3 class="info-title">プロジェクト情報</h3>
+                    <div>
+                        <div class="meta-item">
+                            <span class="meta-label">役割</span>
+                            <span class="meta-value">ゲームデザイナー / プログラマー</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">期間</span>
+                            <span class="meta-value">1ヶ月</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">制作年</span>
+                            <span class="meta-value">2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：概要 -->
+            <div>
+                <div class="info-section">
+                    <h3 class="info-title">プロジェクト概要</h3>
+                    <div class="info-content">
+                        <p>
+                            パズルになっている道を動かしてスタートにいるプレイヤーのゴールまでのルートを作る。
+                        </p>
+                         <p style="margin-top: 15px;">
+                            ステージに入るたびにスタートのパズル配置が変化し、ルートを作る手順が変化する。
+                        </p>
+                        <p style="margin-top: 15px;">
+                            ステージをクリアするとアイテムを獲得でき、リストにコレクションできる。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 詳細説明 -->
+        <section class="description-section">
+            <h2 class="section-title">開発背景</h2>
+            <div class="description-text">
+                <p>
+                    このゲームは、学校の制作課題で作成しました。
+                    パズルゲームというテーマからアドベンチャー要素を取り入れ迷宮からの脱出というコンセプトを設定して制作しました。
+                </p>
+                <p>
+                    開発にあたっては、まずゲームの核となるスライドパズルとプレイヤーの移動という部分の制作に力を入れました。
+                    パズルが直感的に操作できるようにタッチ操作で動かせるようにしUIを多く入れず、パズル操作をしやすい画面を目指しました。
+                </p>
+                <p>
+                    プレイヤーを道はば通りに進ませる部分は苦戦しましたが、当たり判定を調整したり、プレイヤーが入ってくる方向に応じて方向を変えたり、GAMEOVERにしたりと工夫を行いしっかりと作ることができました。
+                </p>
+            </div>
+        </section>
+
+        <!-- 主な機能 -->
+        <section class="features-section">
+            <h2 class="section-title">主な機能</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3 class="feature-title">スライパズル</h3>
+                    <p class="feature-description">
+                        ゴールまでのルートをつくための要素<br>
+                        ゴールまでのルートは1つとは限らない
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3 class="feature-title">プレイヤー移動</h3>
+                    <p class="feature-description">
+                        ボタンが押されたら自分が作った道をプレイヤーが移動<br>
+                        場外や道のないタイルに到達すればGAMEOVER
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3 class="feature-title">プレイヤーの情報管理</h3>
+                    <p class="feature-description">
+                        DB上にてユーザの情報を管理<br>
+                        トークンを発行し、ユーザーデータが存在すれば自動ログインも実装
+                    </p>
+                </div>
+                <div class="feature-item">
+                    <h3 class="feature-title">アイテムリスト</h3>
+                    <p class="feature-description">
+                        初めてステージをクリアするとアイテムを獲得<br>
+                        ユーザーデータに紐づけられ、リストで獲得したアイテムを確認できる
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ギャラリー -->
+        <section class="gallery-section">
+            <h2 class="section-title">スクリーンショット</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">🎮</div>
+                <div class="gallery-item">🏰</div>
+                <div class="gallery-item">⚔️</div>
+            </div>
+        </section>
+
+        <!-- 外部リンク -->
+         <!--
+        <section class="links-section">
+            <h2 class="section-title">プロジェクトリンク</h2>
+            <div class="link-buttons">
+                <a href="#" class="link-button primary">プレイする</a>
+                <a href="#" class="link-button">GitHub</a>
+                <a href="#" class="link-button">デモ動画</a>
+            </div>
+        </section>
+        -->
+    </div>
+
+    <!-- ===== フッター ===== -->
+    <footer>
+        <p>Thank you for visiting</p>
+    </footer>
+</body>
+</html>
