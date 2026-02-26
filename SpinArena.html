@@ -217,13 +217,6 @@
             border-color: #444;
         }
 
-        .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* 画像全体を表示して枠内に収める */
-    display: block;
-}
-
         /* ===== 外部リンクセクション ===== */
         .links-section {
             padding: 60px 0;
@@ -314,8 +307,8 @@
 
     <!-- ===== ヒーローセクション ===== -->
     <section class="hero">
-        <h1 class="project-title">木漏れ日の迷宮</h1>
-        <p class="project-subtitle">変化する迷宮から脱出せよ</p>
+        <h1 class="project-title">Cherry Farm</h1>
+        <p class="project-subtitle">リスが黄金のさくらんぼを求めて上を目指す</p>
     </section>
 
     <!-- ===== メインコンテンツ ===== -->
@@ -329,7 +322,6 @@
                     <ul class="tech-list">
                         <li class="tech-item">Unity</li>
                         <li class="tech-item">C#</li>
-                        <li class="tech-item">PHP</li>
                     </ul>
                 </div>
 
@@ -342,11 +334,11 @@
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">期間</span>
-                            <span class="meta-value">2ヶ月</span>
+                            <span class="meta-value">1ヶ月</span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">制作年</span>
-                            <span class="meta-value">2025</span>
+                            <span class="meta-value">2024</span>
                         </div>
                     </div>
                 </div>
@@ -358,15 +350,13 @@
                     <h3 class="info-title">プロジェクト概要</h3>
                     <div class="info-content">
                         <p>
-                            迷宮で迷ってしまった探索者(プレイヤー)を迷宮から脱出させるパズルアドベンチャーゲーム。
+                            リスが黄金のさくらんぼを求めて冒険する2Dアクションゲーム
                         </p>
                          <p style="margin-top: 15px;">
-                            ステージに入るたびにスタートのパネル配置が変化するスライドパズルを動かしてプレイヤーのゴール地点までの道を作り出す。<br>
-                            ルート作成が完了し、スタートボタンを押すとプレイヤーが動き出し、作った道に沿って移動する。ゴール地点までたどり着くことができればゲームクリア。<br>
-                            途中でプレイヤーが画面外に進んでしまったり、道の続いていないパネルに進んでしまうとゲームオーバーとなる。その時はパネルはリセットされず今回の続きから再チャレンジすることができる。
+                            ステージには黄金のさくらんぼの他に普通のさくらんぼも散りばめられており、さくらんぼを拾いながら黄金のさくらんぼを探す。
                         </p>
                         <p style="margin-top: 15px;">
-                            ステージを初めてクリアするとアイテムを獲得でき、リストにコレクションできる。
+                            ステージのあちこちにギミックが散りばめられており、ギミックを駆使することで黄金のさくらんぼへとたどり着く。
                         </p>
                     </div>
                 </div>
@@ -379,14 +369,14 @@
             <div class="description-text">
                 <p>
                     このゲームは、学校の制作課題で作成しました。
-                    パズルゲームというテーマからアドベンチャー要素を取り入れ迷宮からの脱出というコンセプトを設定して制作しました。
+                    2Dアクションというテーマが有り、その中でシンプルかつ簡単な操作感を目指し制作に取り掛かりました。
                 </p>
                 <p>
-                    開発にあたっては、まずゲームの核となるスライドパズルとプレイヤーの移動という部分の制作に力を入れました。
-                    パズルが直感的に操作できるようにタッチ操作で動かせるようにしUIを多く入れず、パズル操作をしやすい画面を目指しました。
+                    開発にあたっては、まずゲームの核となる「簡単な操作感」を実現することに注力しました。
+                    ジャンプの高さ、移動速度だけではなくジャンプに浮遊感をもたせアクションゲーム初心者にも操作しやすい設計にしました。
                 </p>
                 <p>
-                    プレイヤーを道はば通りに進ませる部分は苦戦しましたが、当たり判定を調整したり、プレイヤーが入ってくる方向に応じて方向を変えたり、GAMEOVERにしたりと工夫を行いしっかりと作ることができました。
+                    ジャンプに浮遊感をもたせたので横長のステージではなく縦長のステージ設計を行い浮遊感を際立たせ、プレイヤーがミスを修正しやすい配置やギミックを実装し、熟練度の高いプレイヤーに向けて移動床など難易度を少し上げるようなギミックも追加しました。
                 </p>
             </div>
         </section>
@@ -396,31 +386,23 @@
             <h2 class="section-title">主な機能</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <h3 class="feature-title">スライパズル</h3>
+                    <h3 class="feature-title">不思議な床</h3>
                     <p class="feature-description">
-                        ゴールまでのルートをつくための要素<br>
-                        ゴールまでのルートは1つとは限らない
+                        上下に移動したり、下からすり抜けたりをいろいろな床を複数配置
                     </p>
                 </div>
                 <div class="feature-item">
-                    <h3 class="feature-title">プレイヤー移動</h3>
+                    <h3 class="feature-title">浮遊してショートカット</h3>
                     <p class="feature-description">
-                        ボタンが押されたら自分が作った道をプレイヤーが移動<br>
-                        場外や道のないタイルに到達すればGAMEOVER
+                        黄金のさくらんぼまでの道筋に浮遊装置が<br>
+                        浮遊装置を使ってショートカット
                     </p>
                 </div>
                 <div class="feature-item">
-                    <h3 class="feature-title">プレイヤーの情報管理</h3>
+                    <h3 class="feature-title">スコアランキング</h3>
                     <p class="feature-description">
-                        DB上にてユーザの情報を管理<br>
-                        トークンを発行し、ユーザーデータが存在すれば自動ログインも実装
-                    </p>
-                </div>
-                <div class="feature-item">
-                    <h3 class="feature-title">アイテムリスト</h3>
-                    <p class="feature-description">
-                        初めてステージをクリアするとアイテムを獲得<br>
-                        ユーザーデータに紐づけられ、リストで獲得したアイテムを確認できる
+                        さくらんぼを獲得すると一定のポイントを獲得<br>
+                        獲得したポイントでランキングを生成
                     </p>
                 </div>
             </div>
@@ -430,11 +412,9 @@
         <section class="gallery-section">
             <h2 class="section-title">スクリーンショット</h2>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="puzzle_game_picture/SlidePanel.png"></div>
-                <div class="gallery-item"><img src="puzzle_game_picture/SlidePanel1.png"></div>
-                <div class="gallery-item"><img src="puzzle_game_picture/SelectStages.png"></div>
-                 <div class="gallery-item"><img src="puzzle_game_picture/Items.png"></div>
-                  <div class="gallery-item"><img src="puzzle_game_picture/Tiitle.png"></div>
+                <div class="gallery-item">🎮</div>
+                <div class="gallery-item">🏰</div>
+                <div class="gallery-item">⚔️</div>
             </div>
         </section>
 
