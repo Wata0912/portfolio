@@ -307,8 +307,8 @@
 
     <!-- ===== ヒーローセクション ===== -->
     <section class="hero">
-        <h1 class="project-title">Cherry Farm</h1>
-        <p class="project-subtitle">リスが黄金のさくらんぼを求めて上を目指す</p>
+        <h1 class="project-title">Spin Arena</h1>
+        <p class="project-subtitle">回せ。ぶつけろ。勝ち残れ</p>
     </section>
 
     <!-- ===== メインコンテンツ ===== -->
@@ -322,6 +322,9 @@
                     <ul class="tech-list">
                         <li class="tech-item">Unity</li>
                         <li class="tech-item">C#</li>
+                        <li class="tech-item">Laravel</li>
+                        <li class="tech-item">PHP</li>
+                        <li class="tech-item">MagicOnion</li>
                     </ul>
                 </div>
 
@@ -334,11 +337,11 @@
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">期間</span>
-                            <span class="meta-value">1ヶ月</span>
+                            <span class="meta-value">2ヶ月</span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">制作年</span>
-                            <span class="meta-value">2024</span>
+                            <span class="meta-value">2025</span>
                         </div>
                     </div>
                 </div>
@@ -350,13 +353,14 @@
                     <h3 class="info-title">プロジェクト概要</h3>
                     <div class="info-content">
                         <p>
-                            リスが黄金のさくらんぼを求めて冒険する2Dアクションゲーム
+                            自身のコマを操作して相手のコマを吹き飛ばし戦うアクションゲーム。
                         </p>
                          <p style="margin-top: 15px;">
-                            ステージには黄金のさくらんぼの他に普通のさくらんぼも散りばめられており、さくらんぼを拾いながら黄金のさくらんぼを探す。
+                            最初に自身のコマのタイプを３種類の中から選び、すべてのプレイヤーがコマを選び終えればゲームスタート。<br>
+                            自身のコマを操作して相手のコマに攻撃することができ、相手のコマを場外に弾き飛ばすか、体力を０にすることでゲームに勝利することができる。
                         </p>
                         <p style="margin-top: 15px;">
-                            ステージのあちこちにギミックが散りばめられており、ギミックを駆使することで黄金のさくらんぼへとたどり着く。
+                            ルームを作成することで複数人で遊ぶことができ、ゲームがどんどん複雑化していく。
                         </p>
                     </div>
                 </div>
@@ -368,15 +372,15 @@
             <h2 class="section-title">開発背景</h2>
             <div class="description-text">
                 <p>
-                    このゲームは、学校の制作課題で作成しました。
-                    2Dアクションというテーマが有り、その中でシンプルかつ簡単な操作感を目指し制作に取り掛かりました。
+                    このゲームは、ベイブレードというホビーを基にアクションゲームとして作成しました。
                 </p>
                 <p>
-                    開発にあたっては、まずゲームの核となる「簡単な操作感」を実現することに注力しました。
-                    ジャンプの高さ、移動速度だけではなくジャンプに浮遊感をもたせアクションゲーム初心者にも操作しやすい設計にしました。
+                    初めてのMagicOnionを使用しての開発となり、初めてのマルチプレイヤーオンラインゲームの個人開発になります。
+                    開発にあたってコマの衝突判定に苦戦しました。一方の画面ではコマが衝突しているのにも関わらずもう一方の画面では衝突していない判定になってしまったり、サーバー側でコマの衝突時の判定を複数回送信してしまうなどオンラインマルチプレイヤーゲームならではの問題が数多く発生し、なかなかうまく作ることができませんでした。<br>
+                    先生や友達に相談し意見をもらったりアドバイスをしてもらうことでコマの衝突が起こった際、コマの衝突をベアとしてサーバーに送信しそれぞれのクライアントに1度ずつ衝突判定を送信する形で作成することができました。
                 </p>
                 <p>
-                    ジャンプに浮遊感をもたせたので横長のステージではなく縦長のステージ設計を行い浮遊感を際立たせ、プレイヤーがミスを修正しやすい配置やギミックを実装し、熟練度の高いプレイヤーに向けて移動床など難易度を少し上げるようなギミックも追加しました。
+                   操作感にはかなり慣性を持たせておりコマが大きくはじかれ空中に飛んでしまった際に中央に戻ることができるなどゲームならではの挙動や操作を行うことができるのが特徴です。
                 </p>
             </div>
         </section>
@@ -386,25 +390,18 @@
             <h2 class="section-title">主な機能</h2>
             <div class="features-grid">
                 <div class="feature-item">
-                    <h3 class="feature-title">不思議な床</h3>
+                    <h3 class="feature-title">3つのコマのタイプ</h3>
                     <p class="feature-description">
-                        上下に移動したり、下からすり抜けたりをいろいろな床を複数配置
+                        Attack、Defense、Balanceの３つコマのタイプが存在し、コマごとに操作感などが違ったりします。
                     </p>
                 </div>
                 <div class="feature-item">
-                    <h3 class="feature-title">浮遊してショートカット</h3>
+                    <h3 class="feature-title">ふわっと浮く慣性</h3>
                     <p class="feature-description">
-                        黄金のさくらんぼまでの道筋に浮遊装置が<br>
-                        浮遊装置を使ってショートカット
+                        コマ同士が衝突した際、ふわっと浮くなどコマの重さが感じられないような挙動や移動入力することでステージ外に飛んでしまったベイをステージに戻すことができるなど面白い慣性を感じることができます。
                     </p>
                 </div>
-                <div class="feature-item">
-                    <h3 class="feature-title">スコアランキング</h3>
-                    <p class="feature-description">
-                        さくらんぼを獲得すると一定のポイントを獲得<br>
-                        獲得したポイントでランキングを生成
-                    </p>
-                </div>
+                
             </div>
         </section>
 
