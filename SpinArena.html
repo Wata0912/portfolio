@@ -217,6 +217,13 @@
             border-color: #444;
         }
 
+         .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 画像全体を表示して枠内に収める */
+            display: block;
+        }
+
         /* ===== 外部リンクセクション ===== */
         .links-section {
             padding: 60px 0;
@@ -409,23 +416,21 @@
         <section class="gallery-section">
             <h2 class="section-title">スクリーンショット</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">🎮</div>
-                <div class="gallery-item">🏰</div>
-                <div class="gallery-item">⚔️</div>
+                <div class="gallery-item"><img src="SpinArena_picture/SpinArena2.png"></div>
+                <div class="gallery-item"><img src="SpinArena_picture/SpinArena3.png"></div>
+                <div class="gallery-item"><img src="SpinArena_picture/SpinArena4.png"></div>
+                <div class="gallery-item"><img src="SpinArena_picture/SpinArena5.png"></div>
             </div>
         </section>
 
-        <!-- 外部リンク -->
-         <!--
+        
         <section class="links-section">
             <h2 class="section-title">プロジェクトリンク</h2>
             <div class="link-buttons">
-                <a href="#" class="link-button primary">プレイする</a>
-                <a href="#" class="link-button">GitHub</a>
-                <a href="#" class="link-button">デモ動画</a>
+                <a href="https://github.com/Wata0912/realtime-game" class="link-button">GitHub</a>
             </div>
         </section>
-        -->
+        
     </div>
 
     <!-- ===== フッター ===== -->
